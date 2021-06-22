@@ -12,9 +12,9 @@ import (
 func main() {
 	c := make(chan int, 2) // We make a channel with a buffer room of 1 so we only allow one value on the channel
 
-	sendOnlyChannel := make(chan<- int) // This is a directional channel which can only have ints sent to it but not pull anything from it.
-	// recieveOnlyChannel := make(<-chan int) // This is recieve only channel
-	go func() { // this allows the goroutine and the main goroutine to hand off the channel data.
+	sendOnlyChannel := make(chan<- int)    // This is a directional channel which can only have ints sent to it but not pull anything from it.
+	recieveOnlyChannel := make(<-chan int) // This is recieve only channel
+	go func() {                            // this allows the goroutine and the main goroutine to hand off the channel data.
 		c <- 42
 		c <- 43
 		sendOnlyChannel <- 26
@@ -22,7 +22,7 @@ func main() {
 
 	fmt.Println(<-c)
 	fmt.Println(<-c)
-	// fmt.Println(<-recieveOnlyChannel)
+	fmt.Println(<-recieveOnlyChannel)
 
 	// You may also assign specific directed channels to a general type, but you can't convert them
 	sendOnlyChannel = c
@@ -211,7 +211,7 @@ func timeConsumingWork(n int) int {
 }
 
 // Context
-// This object holds request respeci values for Go servers such that goroutines related to that request can share values like headers and cookies.
+// This object holds request respecitive values for Go servers such that goroutines related to that request can share values like headers and cookies.
 func contextExample() {
 	ctx := context.Background()
 

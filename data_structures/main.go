@@ -36,7 +36,7 @@ func main() {
 	fmt.Println(x)
 
 	// Can use make to create a Slice to give the underlying array a specific size to avoid an early array expansion procedure.
-	x = make([]int, 10, 12) // length of the slice is 10, and the capacity is 100
+	x = make([]int, 10, 100) // length of the slice is 10, and the capacity is 100
 	fmt.Println(x)
 	fmt.Println(len(x))
 	fmt.Println(cap(x))

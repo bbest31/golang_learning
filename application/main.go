@@ -7,11 +7,13 @@ import (
 )
 
 type person struct {
-	First string `json:"First"` // tags are used to define corresponding json key when marshalling. If left out is uses the field name from the struct
-	Last  string `json:"Last"`  // if using `json:"Last,omitempty"` then that field will be omitted if empty in the struct
-	Age   int    `json:"Age"`   // if using `json:"-"` always omit this field from the json object
+	First string         `json:"First"` // tags are used to define corresponding json key when marshalling. If left out is uses the field name from the struct
+	Last  string         `json:"Last"`  // if using `json:"Last,omitempty"` then that field will be omitted if empty in the struct
+	Age   int            `json:"Age"`   // if using `json:"-"` always omit this field from the json object
+	KV    map[string]int `json:"Map"`
 }
 
+// Custom Sort
 type byAge []person
 
 // In order to have a custom sort you must implement 3 methods
@@ -26,12 +28,20 @@ func main() {
 		"Brandon",
 		"Best",
 		26,
+		map[string]int{
+			"Marco": 1,
+			"Polo":  2,
+		},
 	}
 
 	p2 := person{
 		"Emma",
 		"Best",
 		22,
+		map[string]int{
+			"Marco": 1,
+			"Polo":  2,
+		},
 	}
 
 	people := []person{p1, p2}

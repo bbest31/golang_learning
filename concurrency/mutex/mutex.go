@@ -21,7 +21,7 @@ func main() {
 		go func() {
 			mtx.Lock() // Use a mutex to lock access to the code in this Goroutine
 			v := counter
-			runtime.Gosched()
+			runtime.Gosched() // allows other goroutines to run by yielding the CPU.
 			v++
 			counter = v
 			mtx.Unlock() // Unlock access to code so other Goroutines can use it again.
